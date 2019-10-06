@@ -15,3 +15,7 @@
 
 # Ignore Byebug command history file.
 .byebug_history
+
+#不要な投稿画像のアップロード阻止
+public/uploads/*
+
