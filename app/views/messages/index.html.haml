@@ -1,0 +1,78 @@
+
+.flash
+
+  .notice グループを作成しました
+
+
+.contents
+
+  .left-contents
+
+    .left-header
+      .left-header__box
+        %p.left-header__box__user test-user
+        %ul.left-header__box__menu
+          %li.left-header__box__menu__new-group
+            = link_to "#" do
+              = fa_icon "edit"
+          %li.left-header__box__menu__user-edit
+            = link_to "#" do
+              = fa_icon "cog"
+
+    .groups
+      -# 後にeachメソッドを使って編集
+      = link_to "#" do
+        .group
+          %p.group__name sample-group
+          %p.group__top-message さようなら
+      = link_to "#" do
+        .group
+          %p.group__name sample-group
+          %p.group__top-message さようなら
+      = link_to "#" do
+        .group
+          %p.group__name sample-group
+          %p.group__top-message さようなら
+
+
+  .main-contents
+
+    .main-header
+      .main-header__box
+        %h2.main-header__box__current-group test-group
+        %ul.main-header__box__members
+          Member：
+          %li.main-header__box__members__member
+            test
+          %li.main-header__box__members__member
+            user
+      = link_to "#" do
+        .main-header__edit-btn Edit
+
+    .messages
+      -# 後にeachメソッドを使って編集
+      .message
+        .message__info
+          %p.message__info__user test-user
+          %p.message__info__timestamp 2019/10/10(Wed) 12:00
+        .message__text こんにちは！
+        =image_tag ""
+      .message
+        .message__info
+          %p.message__info__user test-user
+          %p.message__info__timestamp 2019/10/10(Wed) 12:00
+        .message__text こんにちは！
+        =image_tag ""
+
+    .form
+      -# あとでform_forを使って編集
+      %form.new-post
+        .new-post__box
+          %input.new-post__box__text{type: "text", placeholder: "type a message"}
+          %label.new-post__box__image
+            = fa_icon "image", class: "fa-lg"
+            %input.new-post__box__image__file{type: "file"}
+        %input.form__submit-btn{type: "submit", value: "send"}
+
+
+

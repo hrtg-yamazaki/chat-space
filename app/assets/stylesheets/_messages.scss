@@ -1,0 +1,32 @@
+// scssファイルの読み込み //
+
+@import "left-contents";
+@import "main-contents";
+
+
+// ページ全体へのcss //
+
+*{
+  box-sizing: border-box;
+}
+
+body, html{
+  @include fill-up;
+}
+
+.flash {
+  background-color: $cyan;
+  .notice {
+    color: white;
+    text-align: center;
+  }
+}
+
+.contents{
+  @include fill-up;
+  margin: 0;
+  padding: 0;
+}
+
+
+

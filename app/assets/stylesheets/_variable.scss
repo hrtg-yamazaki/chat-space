@@ -1,0 +1,27 @@
+
+// 色の定義 //
+
+$cyan: #38AEF0;
+$navy-gray: #2f3e51;
+$white: #ffffff;
+$gray: #434A54;
+
+
+// mixin //
+
+@mixin fill-up{
+  width: 100%;
+  height: 100%;
+}
+
+@mixin distribute{
+  display: flex;
+  justify-content: space-between;
+}
+
+
+
+
+
+
+
