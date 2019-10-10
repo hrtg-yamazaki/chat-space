@@ -3,6 +3,8 @@
 @import "font-awesome";
 @import "variable";
 
-// モデル別ビューファイルへのscss //
-@import "messages";
 
+// モデル別ビューファイルへのscss //
+@import "flash";
+@import "messages";
+@import "user";
