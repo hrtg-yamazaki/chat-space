@@ -14,13 +14,13 @@ body, html{
   @include fill-up;
 }
 
-.flash {
-  background-color: $cyan;
-  .notice {
-    color: white;
-    text-align: center;
-  }
-}
+// .flash {
+//   background-color: $cyan;
+//   .notice {
+//     color: white;
+//     text-align: center;
+//   }
+// }
 
 .contents{
   @include fill-up;
