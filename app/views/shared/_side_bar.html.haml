@@ -1,0 +1,22 @@
+.left-contents
+
+  .left-header
+    .left-header__box
+      %p.left-header__box__user
+        = current_user.name
+      %ul.left-header__box__menu
+        %li.left-header__box__menu__new-group
+          = link_to new_group_path do
+            = fa_icon "edit"
+        %li.left-header__box__menu__user-edit
+          = link_to edit_user_path(current_user) do
+            = fa_icon "cog"
+
+  .groups
+    - current_user.groups.each do |group|
+      = link_to "#" do
+        .group
+          .group__name
+            = group.name
+          .group__top-message
+            メッセージはまだありません。
