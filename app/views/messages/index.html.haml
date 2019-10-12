@@ -32,14 +32,14 @@
         =image_tag ""
 
     .form
-      -# あとでform_forを使って編集
-      %form.new-post
+      = form_for [@group, @message] , html: {class: "new-post"} do |f|
         .new-post__box
-          %input.new-post__box__text{type: "text", placeholder: "type a message"}
-          %label.new-post__box__image
+          = f.text_field :body, class:"new-post__box__text", placeholder: "type a message"
+          = f.label :image, class: "new-post__box__image" do
             = fa_icon "image", class: "fa-lg"
-            %input.new-post__box__image__file{type: "file"}
-        %input.form__submit-btn{type: "submit", value: "send"}
+            = f.file_field :image, class: "new-post__box__image__file"
+        = f.submit "Send", class: "form__submit-btn"
+
 
 
 
