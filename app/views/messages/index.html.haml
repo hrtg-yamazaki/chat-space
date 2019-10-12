@@ -32,7 +32,7 @@
         =image_tag ""
 
     .form
-      = form_for [@group, @message] , html: {class: new-post} do |f|
+      = form_for [@group, @message] , html: {class: "new-post"} do |f|
         .new-post__box
           = f.text_field :body, class:"new-post__box__text", placeholder: "type a message"
           = f.label :image, class: "new-post__box__image" do
