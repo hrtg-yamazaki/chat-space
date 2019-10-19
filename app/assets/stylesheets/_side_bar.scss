@@ -34,6 +34,7 @@
     background-color: $navy-gray;
     padding: 20px 20px 0px 20px;
     height: calc(100% - 100px);
+    overflow: scroll;
     a{
       text-decoration: none;
       .group{
