@@ -41,6 +41,9 @@ $(function() {
     .fail(function() {
       alert("メッセージを入力してください");
     })
+    .always(function() {
+      $(".form__submit-btn").removeAttr("disabled");
+    })
   });
 });
 
