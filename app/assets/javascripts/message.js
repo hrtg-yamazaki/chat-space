@@ -29,7 +29,7 @@ $(document).on("turbolinks:load",function(){
       var input = $("#user-search-field").val();
 
       $.ajax({
-        url: "/users/index",
+        url: "/users",
         type: "GET",
         data: { keyword: input },
         dataType: "json"
