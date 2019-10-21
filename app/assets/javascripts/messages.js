@@ -1,6 +1,6 @@
 $(function() {
-    function buildHTML(message){
-    var html = `<div class="message">
+  function buildHTML(message){
+    var html = `<div class="message data-id= "${message.id}">
                 <div class="message__info">
                   <p class="message__info__user">
                     ${message.user_name}
@@ -10,7 +10,7 @@ $(function() {
                   </p>
                 </div>
                 <div class="message__text">
-                  ${message.body}
+                  ${ message.body ? message.body : ""}
                 </div>
                 <img src='${ message.image ? message.image : "" }'>
               </div>`
@@ -35,7 +35,8 @@ $(function() {
       $(".messages").append(html);
       $("#new_message")[0].reset();
       $(".messages").animate({
-        scrollTop: $(".messages")[0].scrollHeight},1000);
+        scrollTop: $(".messages")[0].scrollHeight
+      },1000);
     })
     .fail(function() {
       alert("メッセージを入力してください");
@@ -44,6 +45,27 @@ $(function() {
       $(".form__submit-btn").removeAttr("disabled");
     })
   });
+
+  var reloadMessages = function() {
+    last_message_id = $(".message").last().data();
+    $.ajax({
+      url: "/api/messages",
+      type: "GET",
+      dataType: "json",
+      data: {id: last_message_id}
+    })
+    .done(function(messages) {
+      var insertHTML ="";
+      messages.forEach(function(message) {
+        insertHTML = buildHTML(message);
+        $(".messages").append(insertHTML);
+      });
+    })
+    .fail(function() {
+      console.log("error");
+    });
+  };
+  setInterval(reloadMessages, 5000);
 });
 
 
