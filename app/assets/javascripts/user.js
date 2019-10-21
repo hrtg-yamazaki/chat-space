@@ -59,36 +59,36 @@ $(document).on("turbolinks:load",function(){
       })
 
     });
+
+    $(document).off("click", ".chat-group-user__btn--add")
+    $(document).on("click",".chat-group-user__btn--add", function(){
+      $()
+      userData = $(this).data();
+      var name = userData.userName;
+      var id = userData.userId;
+      
+      function appendMember(name, id) {
+        var html = `
+                    <div class='chat-group-user'>
+                      <input name='group[user_ids][]' type='hidden' value='${id}'> 
+                      <p class='chat-group-user__name'>${name}</p>
+                      <div class='user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn'>削除</div>
+                    </div>
+                    `
+
+        $(".chat-group-users").append(html)
+      }
+
+      $(this).parent().remove();
+      
+      appendMember(name, id);
+
+    })
+
+    $(document).off("click", ".chat-group-user__btn--remove")
+    $(document).on("click", ".chat-group-user__btn--remove", function(){
+      $(this).parent().remove();
+    })
+    
   });
 });
-
-
-$(document).off("click", ".chat-group-user__btn--add")
-$(document).on("click",".chat-group-user__btn--add", function(){
-  $()
-  userData = $(this).data();
-  var name = userData.userName;
-  var id = userData.userId;
-  
-  function appendMember(name, id) {
-    var html = `
-                <div class='chat-group-user'>
-                  <input name='group[user_ids][]' type='hidden' value='${id}'> 
-                  <p class='chat-group-user__name'>${name}</p>
-                  <div class='user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn'>削除</div>
-                </div>
-                `
-
-    $(".chat-group-users").append(html)
-  }
-
-  $(this).parent().remove();
-  
-  appendMember(name, id);
-
-})
-
-$(document).off("click", ".chat-group-user__btn--remove")
-$(document).on("click", ".chat-group-user__btn--remove", function(){
-  $(this).parent().remove();
-})
