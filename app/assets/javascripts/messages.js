@@ -1,6 +1,6 @@
 $(function() {
   function buildHTML(message){
-    var html = `<div class="message" data-message-id= "${message.id}">
+    var html = `<div class="message" data-id= "${message.id}">
                 <div class="message__info">
                   <p class="message__info__user">
                     ${message.user_name}
@@ -47,33 +47,29 @@ $(function() {
   });
 
   var reloadMessages = function() {
-    var last_message_id = $(".message:last").data("message-id");
-    console.log(last_message_id);
-    $.ajax({
-      url: "api/messages",
-      type: "GET",
-      dataType: "json",
-      data: {id: last_message_id}
-    })
-    .done(function(messages) {
-      var insertHTML ="";
-      messages.forEach(function(message) {
-        insertHTML = buildHTML(message);
-        $(".messages").append(insertHTML);
-        $(".messages").animate({
-          scrollTop: $(".messages")[0].scrollHeight
-        },1000);
+    if (location.href.match(/\/groups\/\d+\/messages/)) {
+      last_message_id = $(".message:last").data("id");
+      $.ajax({
+        url: "api/messages",
+        type: "GET",
+        dataType: "json",
+        data: {id: last_message_id}
+      })
+      .done(function(messages) {
+        var insertHTML ="";
+        messages.forEach(function(message) {
+          insertHTML = buildHTML(message);
+          $(".messages").append(insertHTML);
+          $(".messages").animate({
+            scrollTop: $(".messages")[0].scrollHeight
+          },1000);
+        });
+      })
+      .fail(function() {
+        alert("更新に失敗しました");
       });
-    })
-    .fail(function() {
-      console.log("更新に失敗しました");
-    });
-  };
-
-  if (document.URL.match(/\/groups\/\d+\/messages/)){
-    setInterval(reloadMessages, 5000);
+      
+    };
   }
+  setInterval(reloadMessages, 5000);
 });
-
-
-
